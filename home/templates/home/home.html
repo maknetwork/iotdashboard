@@ -1,0 +1,228 @@
+{% extends "home/base.html" %}
+{% block title %}Fly-box Dashboard{% endblock %}
+{%block selected1%}class="active"{%endblock%}
+{% block content %}
+<div class="container-fluid">
+    <div class="row  ">
+        <div class="col-12">
+
+            <h1>Dashboard</h1>
+            <div class="float-sm-right text-zero">
+                          <button type="button" class="btn btn-primary btn-lg top-right-button mr-1">ADD NEW</button>
+
+                          <div class="btn-group ">
+                              <div class="btn btn-primary btn-lg pl-4 pr-0 check-button">
+                                  <label class="custom-control custom-checkbox mb-0 d-inline-block">
+                                      <input type="checkbox" class="custom-control-input" id="checkAll">
+                                      <span class="custom-control-label"></span>
+                                  </label>
+                              </div>
+                              <button type="button" class="btn btn-lg btn-primary dropdown-toggle dropdown-toggle-split pl-2 pr-2"
+                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <span class="sr-only">Toggle Dropdown</span>
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                  <a class="dropdown-item" href="#">Action</a>
+                                  <a class="dropdown-item" href="#">Another action</a>
+                              </div>
+                          </div>
+                      </div>
+            <div class="separator mb-5"></div>
+
+
+        </div>
+        </div>        <h5 class="mb-4">Devices</h5>
+
+
+        <div class="row">
+
+        <div class="col-12 list" data-check-all="checkAll">
+          {%for client in clients%}
+
+                    <div class="card d-flex flex-row mb-3">
+                        <div class="d-flex flex-grow-1 min-width-zero">
+                            <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
+{{client.title}}
+                                <p class="mb-1 text-muted text-small w-15 w-xs-100">{{client.ipaddress}}</p>
+                                <p class="mb-1 text-muted text-small w-15 w-xs-100">{{client.created}}</p>
+                                <div class="w-15 w-xs-100">
+                                    <span class="badge badge-pill badge-secondary">ON HOLD</span>
+                                </div>
+                            </div>
+                            <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
+                                <label class="custom-control custom-checkbox mb-0">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <span class="custom-control-label"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+{%endfor%}
+                  </div>
+
+                    </div>
+
+                <div class="row icon-cards-row mb-4">
+                  <div class="col-md-3 col-lg-2 col-sm-4 col-6 mb-4">
+                    <a href="#" class="card">
+                      <div class="card-body text-center">
+                        <i class="iconsminds-clock"></i>
+                        <p class="card-text font-weight-semibold mb-0">Temperature</p>
+                        <p class="lead text-center">{{sensordata.temperature}}</p></div></a></div>   <div class="col-md-3 col-lg-2 col-sm-4 col-6 mb-4">
+                            <a href="#" class="card">
+                              <div class="card-body text-center">
+                                <i class="iconsminds-clock"></i>
+                                <p class="card-text font-weight-semibold mb-0">Humidity</p>
+                                <p class="lead text-center">{{sensordata.humidity}}</p></div></a></div></div>
+                                          
+
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card dashboard-filled-line-chart">
+                        <div class="card-body ">
+                            <div class="float-left float-none-xs">
+                                <div class="d-inline-block">
+                                    <h5 class="d-inline">Conversion Rates</h5>
+                                    <span class="text-muted text-small d-block">Per Session</span>
+                                </div>
+                            </div>
+                            <div class="btn-group float-right mt-2 float-none-xs">
+                                <button class="btn btn-outline-secondary btn-xs dropdown-toggle" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    This Week
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Last Week</a>
+                                    <a class="dropdown-item" href="#">This Month</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart card-body pt-0">
+                            <canvas id="conversionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+          </div>
+
+          <h5 class="mb-4">Pumps</h5>
+
+          <div class="row">
+            {%for client in clients %}
+
+            <div class="col-md-6 col-sm-6 col-lg-4 col-12 mb-4">
+
+
+                        <div class="card d-flex flex-row">
+                            <a class="d-flex" href="#">                                  {% if status == "off" %}
+
+                                <div class="rounded-circle m-4 align-self-center list-thumbnail-letters" style="
+    background: red;
+">
+OFF                        {% else %}
+<div class="rounded-circle m-4 align-self-center list-thumbnail-letters" style="
+background: green;
+">
+ON
+         {% endif %}
+
+ </div>
+
+                            </a>
+                            <div class=" d-flex flex-grow-1 min-width-zero">
+                                <div class="card-body pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
+                                    <div class="min-width-zero">
+                                        <a href="#">
+                                            <p class="list-item-heading mb-1 truncate">Pumps</p>
+                                        </a>
+                                        <p class="mb-2 text-redmuted text-small">{{client.title}}</p>
+                                         {% if status == "off" %}
+<button type="button" class="btn btn-secondary btn-lg mb-1" onclick="window.location.href = '/startautomation/?dept_id={{client.id}}&user_name=on';" >toggle</button>                                    </div>
+
+{%else%}<button type="button" class="btn btn-secondary btn-lg mb-1" onclick="window.location.href = '/startautomation/?dept_id={{client.id}}&user_name=off';" >toggle</button>                                    </div>
+{%endif%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+        </div>
+
+
+
+{% endblock %}
+
+{%block footer%}
+<script>
+    // line chart data
+    var buyerData = {
+      labels: [
+      {% for o in date %} new Date({{o}}).toLocaleString() ,{%endfor%}],
+        datasets : [
+        {
+            fillColor : "rgba(172,194,132,0.4)",
+            strokeColor : "#ACC26D",
+            pointColor : "#fff",
+            pointStrokeColor : "#9DB86D",
+            data : {{temperature}}
+        }
+    ]
+    }
+    // get line chart canvas
+    var buyers = document.getElementById('buyers').getContext('2d');
+    // draw line chart
+    new Chart(buyers).Line(buyerData);
+    // pie chart data
+    var pieData = [
+        {
+            value: 20,
+            color:"#878BB6"
+        },
+        {
+            value : 40,
+            color : "#4ACAB4"
+        },
+        {
+            value : 10,
+            color : "#FF8153"
+        },
+        {
+            value : 30,
+            color : "#FFEA88"
+        }
+    ];
+    // pie chart options
+    var pieOptions = {
+         segmentShowStroke : false,
+         animateScale : true
+    }
+    // get pie chart canvas
+    var countries= document.getElementById("countries").getContext("2d");
+    // draw pie chart
+    new Chart(countries).Pie(pieData, pieOptions);
+    // bar chart data
+    var barData = {
+        labels : ["January","February","March","April","May","June"],
+        datasets : [
+            {
+                fillColor : "#48A497",
+                strokeColor : "#48A4D1",
+                data : [456,479,324,569,702,600]
+            },
+            {
+                fillColor : "rgba(73,188,170,0.4)",
+                strokeColor : "rgba(72,174,209,0.4)",
+                data : [364,504,605,400,345,320]
+            }
+        ]
+    }
+    // get bar chart canvas
+    var income = document.getElementById("income").getContext("2d");
+    // draw bar chart
+    new Chart(income).Bar(barData);
+</script>
+
+{%endblock%}

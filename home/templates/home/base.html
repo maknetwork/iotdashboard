@@ -1,0 +1,226 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="%PUBLIC_URL%">
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+  <meta name="theme-color" content="#000000">
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+<base href="/">
+
+                    <link rel="stylesheet" href="{% static "font/iconsmind/style.css" %}" />
+                    <link rel="stylesheet" href="{% static "font/simple-line-icons/css/simple-line-icons.css" %}" />
+                    <link rel="stylesheet" href="{% static "css/vendor/jquery.contextMenu.min.css" %}" />
+
+                    <link rel="stylesheet" href="{% static "css/vendor/bootstrap.min.css" %}" />
+                    <link rel="stylesheet" href="{% static "css/vendor/fullcalendar.min.css" %}" />
+                    <link rel="stylesheet" href="{% static "css/vendor/dataTables.bootstrap4.min.css" %}" />
+                    <link rel="stylesheet" href="{% static "css/vendor/datatables.responsive.bootstrap4.min.css" %}" />
+                    <link rel="stylesheet" href="{% static "css/vendor/select2.min.css" %}" />
+                    <link rel="stylesheet" href="{% static "css/vendor/perfect-scrollbar.css" %}" />
+                    <link rel="stylesheet" href="{% static "css/vendor/owl.carousel.min.css" %}" />
+                    <link rel="stylesheet" href="{% static "css/vendor/bootstrap-stars.css" %}" />
+              <link rel="stylesheet" href="{% static "css/vendor/nouislider.min.css" %}" />
+                    <link rel="stylesheet" href="{% static "css/vendor/bootstrap-datepicker3.min.css" %}" />
+
+
+                    <link rel="stylesheet" href="{% static "css/main.css" %}" />
+                <link rel="stylesheet" href="{% static "css/dore.dark.blue.min.css" %}" />
+
+                <link rel="stylesheet" href="{% static "css/vendor/bootstrap-float-label.min.css" %}" />
+
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+
+<title>{% block title %}{% endblock %}</title>
+</head>
+
+<body id="app-container" class="menu-default ">
+<noscript>You need to enable JavaScript to run this app.</noscript>
+  <nav class="navbar fixed-top">
+      <div class="d-flex align-items-center navbar-left">
+          <a href="" class="menu-button d-none d-md-block">
+              <svg class="main" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 17">
+                  <rect x="0.48" y="0.5" width="7" height="1" />
+                  <rect x="0.48" y="7.5" width="7" height="1" />
+                  <rect x="0.48" y="15.5" width="7" height="1" />
+              </svg>
+              <svg class="sub" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 17">
+                  <rect x="1.56" y="0.5" width="16" height="1" />
+                  <rect x="1.56" y="7.5" width="16" height="1" />
+                  <rect x="1.56" y="15.5" width="16" height="1" />
+              </svg>
+          </a>
+
+          <a href="#" class="menu-button-mobile d-xs-block d-sm-block d-md-none">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 17">
+                  <rect x="0.5" y="0.5" width="25" height="1" />
+                  <rect x="0.5" y="7.5" width="25" height="1" />
+                  <rect x="0.5" y="15.5" width="25" height="1" />
+              </svg>
+          </a>
+
+          <div class="search" data-search-path="Layouts.Search.html?q=">
+              <input placeholder="Search...">
+              <span class="search-icon">
+                  <i class="simple-icon-magnifier"></i>
+              </span>
+          </div>
+      </div>
+
+
+      <a class="navbar-logo" href="/">
+          <span>Plant</span>
+      </a>
+
+      <div class="navbar-right">
+          <div class="header-icons d-inline-block align-middle">
+
+              <div class="position-relative d-none d-sm-inline-block">
+                  <button class="header-icon btn btn-empty" type="button" id="iconMenuButton" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="simple-icon-grid"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right mt-3  position-absolute" id="iconMenuDropdown">
+                      <a href="#" class="icon-menu-item">
+                          <i class="iconsmind-Equalizer d-block"></i>
+                          <span>Settings</span>
+                      </a>
+
+                      <a href="#" class="icon-menu-item">
+                          <i class="iconsmind-MaleFemale d-block"></i>
+                          <span>Users</span>
+                      </a>
+
+                      <a href="#" class="icon-menu-item">
+                          <i class="iconsmind-Puzzle d-block"></i>
+                          <span>Components</span>
+                      </a>
+
+                      <a href="#" class="icon-menu-item">
+                          <i class="iconsmind-Bar-Chart d-block"></i>
+                          <span>Profits</span>
+                      </a>
+
+                      <a href="#" class="icon-menu-item">
+                          <i class="iconsmind-File-Chart d-block"></i>
+                          <span>Surveys</span>
+                      </a>
+
+                      <a href="#" class="icon-menu-item">
+                          <i class="iconsmind-Suitcase d-block"></i>
+                          <span>Tasks</span>
+                      </a>
+
+                  </div>
+              </div>
+
+
+              <button class="header-icon btn btn-empty d-none d-sm-inline-block" type="button" id="fullScreenButton">
+                  <i class="simple-icon-size-fullscreen"></i>
+                  <i class="simple-icon-size-actual"></i>
+              </button>
+
+          </div>
+
+
+      </div>
+  </nav>
+  <div class="sidebar">
+      <div class="main-menu">
+          <div class="scroll">
+              <ul class="list-unstyled">
+                  <li {%block selected1%}{%endblock%}>
+                      <a href="/">
+                          <i class="iconsmind-Shop-4"></i>
+                          <span>Dashboards</span>
+                      </a>
+                  </li>
+                  <li {%block selected2%}{%endblock%}>
+                      <a href="/connect">
+                          <i class="iconsmind-Digital-Drawing"></i> Connect
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#applications">
+                          <i class="iconsmind-Air-Balloon"></i> Applications
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#ui">
+                          <i class="iconsmind-Pantone"></i> UI
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#landingPage">
+                          <i class="iconsmind-Space-Needle"></i> Landing Page
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#menu">
+                          <i class="iconsmind-Three-ArrowFork"></i> Menu
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+
+
+  </div>
+
+  <!-- Content -->
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+
+
+ <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    <script src="{% static "js/vendor/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "js/vendor/bootstrap.bundle.min.js" %}"></script>
+   <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+       <script src="{% static "js/vendor/chartjs-plugin-datalabels.js" %}"></script>
+    <script src="{% static "js/vendor/moment.min.js" %}"></script>
+    <script src="{% static "js/vendor/fullcalendar.min.js" %}"></script>
+    <script src="{% static "js/vendor/datatables.min.js" %}"></script>
+    <script src="{% static "js/vendor/perfect-scrollbar.min.js" %}"></script>
+    <script src="{% static "js/vendor/owl.carousel.min.js" %}"></script>
+    <script src="{% static "js/vendor/progressbar.min.js" %}"></script>
+    <script src="{% static "js/vendor/jquery.barrating.min.js" %}"></script>
+    <script src="{% static "js/vendor/select2.full.js" %}"></script>
+    <script src="{% static "js/vendor/nouislider.min.js" %}"></script>
+    <script src="{% static "js/vendor/bootstrap-datepicker.js" %}"></script>
+    <script src="{% static "js/vendor/Sortable.js" %}"></script>
+    <script src="{% static "js/vendor/mousetrap.min.js" %}"></script>
+    <script src="{% static "js/dore.script.js" %}"></script>
+    <script src="{% static "js/scripts.js" %}"></script>
+    <script src="{% static "js/vendor/jquery.contextMenu.min.js" %}"></script>
+
+{%block footer%} {%endblock%}
+</body>
+
+
+</html>
