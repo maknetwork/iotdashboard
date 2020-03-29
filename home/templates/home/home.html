@@ -7,26 +7,7 @@
         <div class="col-12">
 
             <h1>Dashboard</h1>
-            <div class="float-sm-right text-zero">
-                          <button type="button" class="btn btn-primary btn-lg top-right-button mr-1">ADD NEW</button>
 
-                          <div class="btn-group ">
-                              <div class="btn btn-primary btn-lg pl-4 pr-0 check-button">
-                                  <label class="custom-control custom-checkbox mb-0 d-inline-block">
-                                      <input type="checkbox" class="custom-control-input" id="checkAll">
-                                      <span class="custom-control-label"></span>
-                                  </label>
-                              </div>
-                              <button type="button" class="btn btn-lg btn-primary dropdown-toggle dropdown-toggle-split pl-2 pr-2"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <span class="sr-only">Toggle Dropdown</span>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-right">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                              </div>
-                          </div>
-                      </div>
             <div class="separator mb-5"></div>
 
 
@@ -46,7 +27,7 @@
                                 <p class="mb-1 text-muted text-small w-15 w-xs-100">{{client.ipaddress}}</p>
                                 <p class="mb-1 text-muted text-small w-15 w-xs-100">{{client.created}}</p>
                                 <div class="w-15 w-xs-100">
-                                    <span class="badge badge-pill badge-secondary">ON HOLD</span>
+                                    <span class="badge badge-pill badge-secondary">Not connected</span>
                                 </div>
                             </div>
                             <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
@@ -66,45 +47,14 @@
                   <div class="col-md-3 col-lg-2 col-sm-4 col-6 mb-4">
                     <a href="#" class="card">
                       <div class="card-body text-center">
-                        <i class="iconsminds-clock"></i>
-                        <p class="card-text font-weight-semibold mb-0">Temperature</p>
+<img src="https://img.icons8.com/ultraviolet/48/000000/thermometer.png"/>                        <p class="card-text font-weight-semibold mb-0">Temperature</p>
                         <p class="lead text-center">{{sensordata.temperature}}</p></div></a></div>   <div class="col-md-3 col-lg-2 col-sm-4 col-6 mb-4">
                             <a href="#" class="card">
                               <div class="card-body text-center">
-                                <i class="iconsminds-clock"></i>
-                                <p class="card-text font-weight-semibold mb-0">Humidity</p>
+<img src="https://img.icons8.com/ultraviolet/40/000000/humidity.png"/>                                <p class="card-text font-weight-semibold mb-0">Humidity</p>
                                 <p class="lead text-center">{{sensordata.humidity}}</p></div></a></div></div>
-                                          
 
-            <div class="row">
 
-                <div class="col-md-6 col-sm-12 mb-4">
-                    <div class="card dashboard-filled-line-chart">
-                        <div class="card-body ">
-                            <div class="float-left float-none-xs">
-                                <div class="d-inline-block">
-                                    <h5 class="d-inline">Conversion Rates</h5>
-                                    <span class="text-muted text-small d-block">Per Session</span>
-                                </div>
-                            </div>
-                            <div class="btn-group float-right mt-2 float-none-xs">
-                                <button class="btn btn-outline-secondary btn-xs dropdown-toggle" type="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    This Week
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Last Week</a>
-                                    <a class="dropdown-item" href="#">This Month</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart card-body pt-0">
-                            <canvas id="conversionChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
 
           </div>
 
