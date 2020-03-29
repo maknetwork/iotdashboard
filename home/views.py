@@ -53,6 +53,10 @@ class connect(CreateView):  # new
     template_name = 'home/connect.html'
     fields = '__all__'
 
+def disconnect(request):
+    posts = Clients.objects.all()
+    return render(request, 'home/disconnect.html', {'posts': posts})
+
 def saveflybox(request):
 
     # if this is a POST request we need to process the form data
@@ -80,6 +84,24 @@ def saveflybox(request):
 
         return HttpResponseRedirect('')
 
+
+def disconnectclient(request):
+
+    # if this is a POST request we need to process the form data
+
+    if request.method == 'POST':
+        try:
+            pk = request.POST.get('clientid')
+            post = Clients.objects.get(pk=pk)
+            post.delete()
+            return JsonResponse({'success':True})
+        except:
+            return JsonResponse({'error':"false"})
+
+
+    else:
+
+        return HttpResponseRedirect('')
 
 
 def startautomation(request):
