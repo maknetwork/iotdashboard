@@ -7,7 +7,6 @@ import requests
 import pytz
 logger = get_task_logger(__name__)
 
-lumi=2000
 @periodic_task(
     run_every=(crontab(minute='*/1')),
     name="task_save_latest_flickr_image",
@@ -15,20 +14,28 @@ lumi=2000
 )
 
 def task_save_latest_flickr_image():
-    client= Clients.objects.get(pk=2)
+    clients= Clients.objects.filter()
+    print(clients)
 
-    URL = "http://192.168.0.109"
-    r = requests.get(URL)
+    for client in clients:
+        try:
+            URL = "http://"+ client.ipaddress
+            r = requests.get(URL)
+            soup = BeautifulSoup(r.content, 'html5lib')
+            inputs=soup.find("input", {"id": "humidity"})
+            inputs2=soup.find("input", {"id": "temperature"})
+            inputs3=soup.find("input", {"id": "luminosity"})
 
-    soup = BeautifulSoup(r.content, 'html5lib')
-    inputs=soup.find("input", {"id": "humidity"})
-    humi= (inputs['value'])
-    inputs2=soup.find("input", {"id": "temperature"})
-    humi= (inputs['value'])
-    temp= (inputs2['value'])
-    user = Sensors.objects.create(client=client, temperature=int(float(temp)), humidity=int(float(humi)), luminosuty=lumi)
-    user.save()
+            humi= (inputs['value'])
+            temp= (inputs2['value'])
+            lumi=(inputs3['value'])
+            user = Sensors.objects.create(client=client, temperature=int(float(temp)), humidity=int(float(humi)), luminosuty=int(lumi))
+            user.save()
+            client.connected= True
+            client.save()
 
-
-
-    logger.info("Saved image from Flickr")
+            logger.info("Saved image from Flickr")
+        except:
+            client.connected= False
+            client.save()
+            print("client not found")

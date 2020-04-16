@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView  # new
 from .models import Clients, Sensors
 from django.views.generic import TemplateView
 from django.db.models import Avg
+from django.views.decorators.cache import never_cache
 
 from django.http import HttpResponse, HttpResponseRedirect
 from bs4 import BeautifulSoup
@@ -15,6 +16,8 @@ import os
 from datetime import datetime as dt
 from datetime import timedelta
 from chartjs.views.lines import BaseLineChartView
+
+@never_cache
 def homepage(request):
 
     date = []
@@ -24,28 +27,22 @@ def homepage(request):
     clients= Clients.objects.all()
     today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
     today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
-    use=Sensors.objects.filter(date__range=(today_min, today_max))
-    sensordata=Sensors.objects.filter().order_by('-id')[0]
-
-    avg= use.aggregate(Avg('temperature'))
-    print(avg)
-    d = dt.today() - timedelta(days=1)
-
-
-    queryset = Sensors.objects.all()
-    for city in queryset:
-        user= datetime.datetime.strptime(str(city.date.date()), '%Y-%m-%d').strftime('%A')
-        date.append(str(city.date.date()))
-        temperature.append(city.temperature)
-        humidity.append(city.humidity)
-        luminosity.append(city.luminosuty)
 
     state="on"
+    sensordata= Sensors.objects.latest('id')
 
+    for client in clients:
 
+        try:
 
-    return render(request, 'home/home.html',{'date': date,'clients':clients,
-        'temperature': temperature,'humidity':humidity,'luminosity':luminosity, 'status':state,'sensordata':sensordata})
+            URL = "http://"+ client.ipaddress
+            r = requests.get(URL)
+            soup = BeautifulSoup(r.content, 'html5lib')
+            inputs3=soup.find("input", {"id": "status"})
+            state= (inputs3['value'])
+        except:
+            print("not found")
+    return render(request, 'home/home.html',{'date': date,'clients':clients,'sensordata':sensordata, "status":state})
 
 class connect(CreateView):  # new
 

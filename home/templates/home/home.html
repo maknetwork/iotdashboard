@@ -27,7 +27,7 @@
                                 <p class="mb-1 text-muted text-small w-15 w-xs-100">{{client.ipaddress}}</p>
                                 <p class="mb-1 text-muted text-small w-15 w-xs-100">{{client.created}}</p>
                                 <div class="w-15 w-xs-100">
-                                    <span class="badge badge-pill badge-secondary">Not connected</span>
+                                    <span class="badge badge-pill badge-secondary">{%if client.connected%}Connected {%else%}Not connected {%endif%}</span>
                                 </div>
                             </div>
                             <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
@@ -57,7 +57,7 @@
                                     <a href="#" class="card">
                                       <div class="card-body text-center">
                               <img src="https://img.icons8.com/ultraviolet/40/000000/lamp.png"/>                            <p class="card-text font-weight-semibold mb-0">Luminosity</p>
-                                        <p class="lead text-center">987</p></div></a></div>
+                                        <p class="lead text-center">{{sensordata.luminosuty}}</p></div></a></div>
                               </div>
 
 

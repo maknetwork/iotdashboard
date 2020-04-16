@@ -8,6 +8,7 @@ class Clients(models.Model):
 	publish = models.DateTimeField(default=timezone.now)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
+	connected = models.BooleanField(default=False)
 	def __str__(self):
 		return self.title
 
