@@ -6,7 +6,7 @@ bs4==0.0.1
 celery==4.4.2
 certifi==2019.11.28
 chardet==3.0.4
-Django==3.0.4
+Django==3.0.12
 django-chartjs==2.0.0
 html5lib==1.0.1
 idna==2.9
